@@ -14,80 +14,80 @@ console.log("isWatch=>", isWatch)
 console.log("distDir=>", distDir)
 
 export default defineConfig({
-  plugins: [
-    svelte(),
+    plugins: [
+        svelte(),
 
-    viteStaticCopy({
-      targets: [
-        {
-          src: "./README*.md",
-          dest: "./",
-        },
-        {
-          src: "./icon.png",
-          dest: "./",
-        },
-        {
-          src: "./preview.png",
-          dest: "./",
-        },
-        {
-          src: "./plugin.json",
-          dest: "./",
-        },
-        {
-          src: "./src/i18n/**",
-          dest: "./i18n/",
-        },
-      ],
-    }),
-  ],
+        viteStaticCopy({
+            targets: [
+                {
+                    src: "./README*.md",
+                    dest: "./",
+                },
+                {
+                    src: "./icon.png",
+                    dest: "./",
+                },
+                {
+                    src: "./preview.png",
+                    dest: "./",
+                },
+                {
+                    src: "./plugin.json",
+                    dest: "./",
+                },
+                {
+                    src: "./src/i18n/**",
+                    dest: "./i18n/",
+                },
+            ],
+        }),
+    ],
 
-  // https://github.com/vitejs/vite/issues/1930
-  // https://vitejs.dev/guide/env-and-mode.html#env-files
-  // https://github.com/vitejs/vite/discussions/3058#discussioncomment-2115319
-  // 在这里自定义变量
-  define: {
-    "process.env.DEV_MODE": `"${isWatch}"`,
-  },
-
-  build: {
-    // 输出路径
-    outDir: distDir,
-    emptyOutDir: false,
-
-    // 构建后是否生成 source map 文件
-    sourcemap: false,
-
-    // 设置为 false 可以禁用最小化混淆
-    // 或是用来指定是应用哪种混淆器
-    // boolean | 'terser' | 'esbuild'
-    // 不压缩，用于调试
-    minify: !isWatch,
-
-    lib: {
-      // Could also be a dictionary or array of multiple entry points
-      entry: resolve(__dirname, "src/index.ts"),
-      // the proper extensions will be added
-      fileName: "index",
-      formats: ["cjs"],
+    // https://github.com/vitejs/vite/issues/1930
+    // https://vitejs.dev/guide/env-and-mode.html#env-files
+    // https://github.com/vitejs/vite/discussions/3058#discussioncomment-2115319
+    // 在这里自定义变量
+    define: {
+        "process.env.DEV_MODE": `"${isWatch}"`,
     },
-    rollupOptions: {
-      plugins: [...(isWatch ? [livereload(devDistDir)] : [])] as Plugin[],
 
-      // make sure to externalize deps that shouldn't be bundled
-      // into your library
-      external: ["siyuan", "process"],
+    build: {
+        // 输出路径
+        outDir: distDir,
+        emptyOutDir: false,
 
-      output: {
-        entryFileNames: "[name].js",
-        assetFileNames: (assetInfo) => {
-          if (assetInfo.name === "style.css") {
-            return "index.css"
-          }
-          return assetInfo.name
+        // 构建后是否生成 source map 文件
+        sourcemap: false,
+
+        // 设置为 false 可以禁用最小化混淆
+        // 或是用来指定是应用哪种混淆器
+        // boolean | 'terser' | 'esbuild'
+        // 不压缩，用于调试
+        minify: !isWatch,
+
+        lib: {
+            // Could also be a dictionary or array of multiple entry points
+            entry: resolve(__dirname, "src/index.ts"),
+            // the proper extensions will be added
+            fileName: "index",
+            formats: ["cjs"],
         },
-      },
-    },
-  }
+        rollupOptions: {
+            plugins: [...(isWatch ? [livereload(devDistDir)] : [])],
+
+            // make sure to externalize deps that shouldn't be bundled
+            // into your library
+            external: ["siyuan", "process"],
+
+            output: {
+                entryFileNames: "[name].js",
+                assetFileNames: (assetInfo) => {
+                    if (assetInfo.name === "style.css") {
+                        return "index.css"
+                    }
+                    return assetInfo.name
+                },
+            },
+        },
+    }
 })
