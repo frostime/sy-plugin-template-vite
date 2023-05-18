@@ -22,7 +22,6 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-
     /* Svelte */
     /**
      * Typecheck JS in `.svelte` and `.js` files by default.
@@ -32,7 +31,6 @@
      */
     "allowJs": true,
     "checkJs": true,
-
     "types": [
       "node",
       "vite/client",

@@ -6,7 +6,7 @@
   "repository": "",
   "homepage": "",
   "author": "",
-  "license": "GPL-v3",
+  "license": "GPL-3.0",
   "scripts": {
     "serve": "vite",
     "dev": "vite build --watch",
