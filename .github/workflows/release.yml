@@ -1,9 +1,9 @@
-on:
-  push:
-    branches:
-      - main
+on: 
+  push: 
+    tags:
+      - "v*"
 
-name: release-please
+name: release
 jobs:
   release-please:
     runs-on: ubuntu-latest
@@ -22,7 +22,7 @@ jobs:
           ## Should feat changes before 1.0.0 produce patch bumps instead of minor bumps? Default false
           bump-patch-for-minor-pre-major: false
           ## If set, create releases that are pre-major or pre-release version marked as pre-release on GitHub. Defaults false
-          prerelease: false
+          prerelease: true
           ## header used within the release PR body, defaults to using :robot: I have created a release *beep* *boop*
           pull-request-header: ':robot: A new release will be created'
           ## A JSON formatted String containing to override the outputted changelog sections
@@ -73,22 +73,10 @@ jobs:
         if: ${{ steps.release.outputs.release_created }}
         run: pnpm install
 
-      # Prepare new version
-      # https://github.com/google-github-actions/release-please-action#outputs
-      - name: Prepare new version
-        if: ${{ steps.release.outputs.release_created }}
-        run: |
-          pnpm prepareRelease
-
       # Build for production
       - name: Build for production
         if: ${{ steps.release.outputs.release_created }}
         run: pnpm build
-
-      # Archive package
-      - name: Archive package
-        if: ${{ steps.release.outputs.release_created }}
-        run: pnpm package
 
       # Upload package to release
       # https://github.com/philips-labs/terraform-aws-github-runner/blob/main/.github/workflows/release.yml#L46
@@ -98,6 +86,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
           ls -l ./build
-          for f in $(find ./build -name '*.zip'); do
+          for f in $(find . -name 'package.zip'); do
             gh release upload ${{ steps.release.outputs.tag_name }} $f
           done
