@@ -4,6 +4,7 @@ import minimist from "minimist"
 import { viteStaticCopy } from "vite-plugin-static-copy"
 import livereload from "rollup-plugin-livereload"
 import { svelte } from "@sveltejs/vite-plugin-svelte"
+import zipPack from "vite-plugin-zip-pack";
 import fg from 'fast-glob';
 
 const args = minimist(process.argv.slice(2))
@@ -92,7 +93,13 @@ export default defineConfig({
                                 }
                             }
                         }
-                    ] : []
+                    ] : [
+                        zipPack({
+                            inDir: './dist',
+                            outDir: './',
+                            outFileName: 'package.zip'
+                        })
+                    ]
                 )
             ],
 
