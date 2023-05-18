@@ -1,7 +1,7 @@
 on: 
   push: 
     tags:
-      - /^[Vv]\d+\.\d+\.\d+.*$/
+      - "v*"
 
 name: release
 jobs:
