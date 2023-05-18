@@ -38,9 +38,9 @@
 
     ![](asset/action.png)
 
-2. 需要发布版本的时候，push 一个格式为 `v*` 的 tag，github 就会自动打包发布 realse（包括 package.zip）
+2. 需要发布版本的时候，push 一个格式为 `v*` 的 tag，github 就会自动打包发布 release（包括 package.zip）
 
-3. 默认使用保守测量进行 pre-release 发布，如果觉得没有必要，更改 release.yml 的设置：
+3. 默认使用保守策略进行 pre-release 发布，如果觉得没有必要，更改 release.yml 的设置：
 
     ```yaml
     - name: Release
