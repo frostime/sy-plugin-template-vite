@@ -6,9 +6,9 @@
     Hello {name}!
 </div>
 
-<style>
+<style lang="scss">
     #hello {
-        margin: 2em;
+        margin: 1rem;
         text-align: center;
     }
 </style>

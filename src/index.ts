@@ -1,6 +1,6 @@
 import { Plugin, showMessage, Dialog } from "siyuan"
 import Hello from "./hello.svelte"
-import "./index.styl"
+import "./index.scss"
 
 export default class SamplePlugin extends Plugin {
 
