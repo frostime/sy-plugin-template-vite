@@ -1,4 +1,11 @@
-[English](README_en_US.md)
+This plugin is a community third-party plug-in development template, in addition to the official development template provides a basic level of functionality, has the following features:
+
+1. based on vite package project, support for hot-loading, in dev mode whether the code or i18n changes can be automatically tracked
+2. soft linking instead of putting the project into the plugins directory program development, you can feel free to develop multiple projects in the same workspace at the same time, and do not worry about accidentally deleting the project code in the source
+3. built-in support for the svelte framework, compared to react, vue and other virtual DOM-based solutions, svelte such compiled framework is more suitable for plug-in development of such lightweight scenarios
+4. provides a github action template to automatically generate package.zip and upload to new release
+5. pre-packaged siyuan.d.ts module, no need to manually replace the siyuan module under the node_module, out-of-the-box use
+
 
 ## Template usage
 
@@ -17,7 +24,8 @@
         ```
 
         - You may need sudo to run it, I installed sudo myself on windows via scoop and can run it directly that way, normal windows users can first open the command line as administrator and then run it.
-        - You can also manually make a soft link, reference to [mklink](https://learn.microsoft.com/windows-server/administration/windows-commands/mklink)
+    - If you haven't installed python in your environment, you can also manually make a soft link, reference to [mklink](https://learn.microsoft.com/windows-server/administration/windows-commands/mklink)
+        - Notice: make sure that the name of soft link is same as the name in your plugin.json
     - As the generated softlink is the same as the plugin name, do not put the project directory under plugins (this is contrary to the official template)
 
 4. development

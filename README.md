@@ -1,5 +1,13 @@
 [English](README_en_US.md)
 
+本插件为社区第三方插件开发模板，在和官方开发模板提供了基本相平齐的功能的基础上，具有以下的特点：
+
+1. 基于 vite 打包项目，支持热加载，在 dev 模式下无论是对代码还是 i18n 的修改都能自动跟踪
+2. 采用软链接而非把项目放入 plugins 目录的方案开发，可以随意在同一个工作空间同时开发多个项目，且不用担心在思源中误删工程代码
+3. 内置了对 svelte 框架的支持，相比较 react、vue 等基于虚拟 DOM 的方案，svelte 这类编译型框架更适合插件开发这种轻量级场景
+4. 提供了 github action 模板，实现自动打包 package.zip 并发布到 release
+5. 预先包装好了 siyuan.d.ts 模块，不需要手动替换 node_module 下的 siyuan 模块，开箱即用
+
 ## 模板用法
 
 1. Use Template
@@ -17,7 +25,8 @@
         ```
 
         - 可能需要 sudo 运行，我自己在 windows 上通过 scoop 安装了 sudo 可以直接这么运行，普通 windows 用户可以首先以管理员身份打开命令行，然后运行。
-        - 也可以自己手动创建软链接，windows 用户请参考 [mklink](https://learn.microsoft.com/zh-cn/windows-server/administration/windows-commands/mklink)
+    - 如果您的开发环境下没有安装 python，也可以自己手动创建软链接；windows 用户请参考 [mklink](https://learn.microsoft.com/zh-cn/windows-server/administration/windows-commands/mklink)
+        - 注意：要确保软链接的名称和 plugin.json 中的 name 字段保持一致
     - 由于生成的软链接和 plugin name 相同，所以不要把工程目录放在 plugins 下（这一点和官方的模板相反）
 
 4. 开发
