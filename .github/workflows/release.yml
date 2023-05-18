@@ -9,15 +9,22 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout Code
-      uses: actions/checkout@v1
-
-    - uses: "marvinpinto/action-automatic-releases@latest"
-      id: create_release
+    # Create release
+    - name: Create release
+      uses: google-github-actions/release-please-action@v3
+      id: release
       with:
-        repo_token: "${{ secrets.RELEASE_TOKEN  }}"
+        token: ${{ secrets.RELEASE_TOKEN }}
+        release-type: node
+        package-name: siyuan-plugin-template
+        ## branch to open pull release PR against (detected by default)
+        default-branch: main
+        ## If set, create releases that are pre-major or pre-release version marked as pre-release on GitHub. Defaults false
         prerelease: true
-        title: Release ${{ github.ref }}
+
+    # Checkout
+    - name: Checkout
+      uses: actions/checkout@v3
 
     # Install Node.js
     - name: Install Node.js
@@ -64,7 +71,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
       with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
+        upload_url: ${{ steps.release.outputs.upload_url }}
         asset_path: ./package.zip
         asset_name: package.zip
         asset_content_type: application/zip
