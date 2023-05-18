@@ -54,7 +54,9 @@
     ```
 
 
-## 依赖
+## 致谢
 
-本项目修改自 [terwer/siyuan-plugin-importer](https://github.com/terwer/siyuan-plugin-importer)
+- @terwer [terwer/siyuan-plugin-importer](https://github.com/terwer/siyuan-plugin-importer)
+- @svchord [svchord/Rem-Craft](https://github.com/svchord/Rem-Craft)
+- @zxhd863943427 [zxhd863943427/siyuan-color-scheme](https://github.com/zxhd863943427/siyuan-color-scheme)
 
