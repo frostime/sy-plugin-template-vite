@@ -1,0 +1,8 @@
+.idea
+.vscode
+.DS_Store
+node_modules
+dev
+dist
+build
+/i18n
