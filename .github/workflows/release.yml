@@ -12,17 +12,13 @@ jobs:
     - name: Checkout Code
       uses: actions/checkout@v1
 
-    - name: Create Release
+    - uses: "marvinpinto/action-automatic-releases@latest"
       id: create_release
-      uses: actions/create-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
       with:
-        tag_name: ${{ github.ref }}
-        release_name: Release ${{ github.ref }}
-        body: Automated Release created by GitHub Actions.
-        draft: false
-        prerelease: false
+        repo_token: "${{ secrets.GITHUB_TOKEN  }}"
+        automatic_release_tag: ${{ github.ref }}
+        prerelease: true
+        title: Release ${{ github.ref }}
 
     # Install Node.js
     - name: Install Node.js
@@ -67,7 +63,7 @@ jobs:
       id: upload-release-asset 
       uses: actions/upload-release-asset@v1
       env:
-        GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }} # This pulls from the CREATE RELEASE step above, referencing it's ID to get its outputs object, which include a `upload_url`. See this blog post for more info: https://jasonet.co/posts/new-features-of-github-actions/#passing-data-to-future-steps 
         asset_path: ./package.zip
