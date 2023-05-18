@@ -28,6 +28,7 @@ jobs:
 
     # Install Node.js
     - name: Install Node.js
+      if: ${{ steps.release.outputs.releases_created }}
       uses: actions/setup-node@v3
       with:
         node-version: 18
@@ -35,6 +36,7 @@ jobs:
   
       # Install pnpm
     - name: Install pnpm
+      if: ${{ steps.release.outputs.releases_created }}
       uses: pnpm/action-setup@v2
       id: pnpm-install
       with:
@@ -43,6 +45,7 @@ jobs:
 
     # Get pnpm store directory
     - name: Get pnpm store directory
+      if: ${{ steps.release.outputs.releases_created }}
       id: pnpm-cache
       shell: bash
       run: |
@@ -50,6 +53,7 @@ jobs:
 
     # Setup pnpm cache
     - name: Setup pnpm cache
+      if: ${{ steps.release.outputs.releases_created }}
       uses: actions/cache@v3
       with:
         path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
@@ -59,10 +63,12 @@ jobs:
 
     # Install dependencies
     - name: Install dependencies
+      if: ${{ steps.release.outputs.releases_created }}
       run: pnpm install
 
     # Build for production, 这一步会生成一个 package.zip
     - name: Build for production
+      if: ${{ steps.release.outputs.releases_created }}
       run: pnpm build
 
     # Upload package to release
