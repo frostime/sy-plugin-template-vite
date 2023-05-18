@@ -16,7 +16,8 @@
         Folder already exists, exit
         ```
 
-    - You may need sudo to run it, I installed sudo myself on windows via scoop and can run it directly that way, normal windows users can first open the command line as administrator and then run it.
+        - You may need sudo to run it, I installed sudo myself on windows via scoop and can run it directly that way, normal windows users can first open the command line as administrator and then run it.
+        - You can also manually make a soft link, reference to [mklink](https://learn.microsoft.com/windows-server/administration/windows-commands/mklink)
     - As the generated softlink is the same as the plugin name, do not put the project directory under plugins (this is contrary to the official template)
 
 4. development

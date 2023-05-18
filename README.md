@@ -16,7 +16,8 @@
         已存在同名文件夹，退出
         ```
 
-    - 可能需要 sudo 运行，我自己在 windows 上通过 scoop 安装了 sudo 可以直接这么运行，普通 windows 用户可以首先以管理员身份打开命令行，然后运行。
+        - 可能需要 sudo 运行，我自己在 windows 上通过 scoop 安装了 sudo 可以直接这么运行，普通 windows 用户可以首先以管理员身份打开命令行，然后运行。
+        - 也可以自己手动创建软链接，windows 用户请参考 [mklink](https://learn.microsoft.com/zh-cn/windows-server/administration/windows-commands/mklink)
     - 由于生成的软链接和 plugin name 相同，所以不要把工程目录放在 plugins 下（这一点和官方的模板相反）
 
 4. 开发
