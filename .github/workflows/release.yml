@@ -1,83 +1,83 @@
 name: Create Release on Tag Push
 
 on:
-  push:
-    tags:
-      - 'v*'
+    push:
+        tags:
+            - "v*"
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-    # Create release
-    - name: Create release
-      uses: google-github-actions/release-please-action@v3
-      id: release
-      with:
-        token: ${{ secrets.RELEASE_TOKEN }}
-        release-type: node
-        package-name: siyuan-plugin-template
-        ## branch to open pull release PR against (detected by default)
-        default-branch: main
-        ## If set, create releases that are pre-major or pre-release version marked as pre-release on GitHub. Defaults false
-        prerelease: true
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            # Create release
+            - name: Create release
+              uses: google-github-actions/release-please-action@v3
+              id: release
+              with:
+                  token: ${{ secrets.RELEASE_TOKEN }}
+                  release-type: node
+                  package-name: siyuan-plugin-template
+                  ## branch to open pull release PR against (detected by default)
+                  default-branch: main
+                  ## If set, create releases that are pre-major or pre-release version marked as pre-release on GitHub. Defaults false
+                  prerelease: true
 
-    # Checkout
-    - name: Checkout
-      uses: actions/checkout@v3
+            # Checkout
+            - name: Checkout
+              uses: actions/checkout@v3
 
-    # Install Node.js
-    - name: Install Node.js
-      if: ${{ steps.release.outputs.releases_created }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: 18
-        registry-url: 'https://registry.npmjs.org'
-  
-      # Install pnpm
-    - name: Install pnpm
-      if: ${{ steps.release.outputs.releases_created }}
-      uses: pnpm/action-setup@v2
-      id: pnpm-install
-      with:
-        version: 8
-        run_install: false
+            # Install Node.js
+            - name: Install Node.js
+              if: ${{ steps.release.outputs.releases_created }}
+              uses: actions/setup-node@v3
+              with:
+                  node-version: 18
+                  registry-url: "https://registry.npmjs.org"
 
-    # Get pnpm store directory
-    - name: Get pnpm store directory
-      if: ${{ steps.release.outputs.releases_created }}
-      id: pnpm-cache
-      shell: bash
-      run: |
-        echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+              # Install pnpm
+            - name: Install pnpm
+              if: ${{ steps.release.outputs.releases_created }}
+              uses: pnpm/action-setup@v2
+              id: pnpm-install
+              with:
+                  version: 8
+                  run_install: false
 
-    # Setup pnpm cache
-    - name: Setup pnpm cache
-      if: ${{ steps.release.outputs.releases_created }}
-      uses: actions/cache@v3
-      with:
-        path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
-        key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-        restore-keys: |
-          ${{ runner.os }}-pnpm-store-
+            # Get pnpm store directory
+            - name: Get pnpm store directory
+              if: ${{ steps.release.outputs.releases_created }}
+              id: pnpm-cache
+              shell: bash
+              run: |
+                  echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
 
-    # Install dependencies
-    - name: Install dependencies
-      if: ${{ steps.release.outputs.releases_created }}
-      run: pnpm install
+            # Setup pnpm cache
+            - name: Setup pnpm cache
+              if: ${{ steps.release.outputs.releases_created }}
+              uses: actions/cache@v3
+              with:
+                  path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
+                  key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+                  restore-keys: |
+                      ${{ runner.os }}-pnpm-store-
 
-    # Build for production, 这一步会生成一个 package.zip
-    - name: Build for production
-      if: ${{ steps.release.outputs.releases_created }}
-      run: pnpm build
+            # Install dependencies
+            - name: Install dependencies
+              if: ${{ steps.release.outputs.releases_created }}
+              run: pnpm install
 
-    # Upload package to release
-    - name: Upload package.zip to the release
-      if: ${{ steps.release.outputs.releases_created }}
-      env:
-        GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
-      run: |
-        ls -l ./build
-        for f in $(find . -name 'package.zip'); do
-          gh release upload ${{ steps.release.outputs.tag_name }} $f
-        done
+            # Build for production, 这一步会生成一个 package.zip
+            - name: Build for production
+              if: ${{ steps.release.outputs.releases_created }}
+              run: pnpm build
+
+            # Upload package to release
+            - name: Upload package.zip to the release
+              if: ${{ steps.release.outputs.releases_created }}
+              env:
+                  GITHUB_TOKEN: ${{ secrets.RELEASE_TOKEN }}
+              run: |
+                  ls -l ./build
+                  for f in $(find . -name 'package.zip'); do
+                    gh release upload ${{ steps.release.outputs.tag_name }} $f
+                  done
