@@ -16,7 +16,6 @@ jobs:
       id: create_release
       with:
         repo_token: "${{ secrets.RELEASE_TOKEN  }}"
-        automatic_release_tag: ${{ github.ref }}
         prerelease: true
         title: Release ${{ github.ref }}
 
