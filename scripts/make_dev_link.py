@@ -15,7 +15,7 @@ name = content.get('name')
 
 # ...如果 name 字段为空，报错并退出
 if not name or name == '':
-    print('name 字段为空')
+    print('"name" in plugin.json not found, exit')
     exit()
 
 # 3. 读取 plugin_dir 下的是否有和 name 字段相同的文件夹
@@ -24,5 +24,5 @@ if not name or name == '':
 if not os.path.exists(os.path.join(plugin_dir, name)):
     os.symlink(os.path.abspath('dev'), os.path.join(plugin_dir, name))
 else:
-    print('已存在同名文件夹，退出')
+    print('Folder already exists, exit')
     exit()
