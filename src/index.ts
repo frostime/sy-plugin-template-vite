@@ -29,5 +29,6 @@ export default class SamplePlugin extends Plugin {
 
     async onunload() {
         showMessage("Goodbye World");
+        console.log("onunload");
     }
 }

@@ -1,5 +1,3 @@
-/// <reference types="vitest" />
-
 import { resolve } from "path"
 import { defineConfig, loadEnv } from "vite"
 import minimist from "minimist"
@@ -9,7 +7,7 @@ import { svelte } from "@sveltejs/vite-plugin-svelte"
 
 const args = minimist(process.argv.slice(2))
 const isWatch = args.watch || args.w || false
-const devDistDir = "/Users/terwer/Documents/mydocs/SiYuanWorkspace/public/data/plugins/siyuan-importer"
+const devDistDir = "./dev"
 const distDir = isWatch ? devDistDir : "./dist"
 
 console.log("isWatch=>", isWatch)
@@ -36,6 +34,10 @@ export default defineConfig({
         {
           src: "./plugin.json",
           dest: "./",
+        },
+        {
+          src: "./src/i18n/**",
+          dest: "./i18n/",
         },
       ],
     }),
@@ -87,11 +89,5 @@ export default defineConfig({
         },
       },
     },
-  },
-
-  test: {
-    globals: true,
-    environment: "jsdom",
-    include: ["src/**/*.{test,spec}.{js,mjs,cjs,ts,mts,cts,jsx,tsx}"],
-  },
+  }
 })
