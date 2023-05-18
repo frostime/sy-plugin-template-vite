@@ -38,9 +38,9 @@ The github action is included and can be automatically packaged and published:
 
     ! [](asset/action.png)
 
-2. when you need to release a version, push a tag in the format `v*` and github will automatically package the realse for release (including package.zip)
+2. when you need to release a version, push a tag in the format `v*` and github will automatically release (including package.zip)
 
-3. use conservative measurements for pre-release releases by default, if you don't think this is necessary, change the settings in release.yml to
+3. use conservative pre-release by default, if you don't think this is necessary, change the settings in release.yml to
 
     ```yaml
     - name: Release
