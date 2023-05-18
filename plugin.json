@@ -4,16 +4,16 @@
   "url": "",
   "version": "0.0.1",
   "displayName": {
-    "default": "Plugin Template",
+    "en_US": "Plugin Template",
     "zh_CN": "插件模板"
   },
   "description": {
-    "default": "Plugin Template",
+    "en_US": "Plugin Template",
     "zh_CN": "插件模板"
   },
   "readme": {
-    "default": "README.md",
-    "zh_CN": "README_zh_CN.md"
+    "en_US": "README_en_US.md",
+    "zh_CN": "README.md"
   },
   "i18n": [
     "en_US",
