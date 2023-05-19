@@ -6,7 +6,8 @@
 2. 采用软链接而非把项目放入 plugins 目录的方案开发，可以随意在同一个工作空间同时开发多个项目，且不用担心在思源中误删工程代码
 3. 内置了对 svelte 框架的支持，相比较 react、vue 等基于虚拟 DOM 的方案，svelte 这类编译型框架更适合插件开发这种轻量级场景
 4. 提供了 github action 模板，实现自动打包 package.zip 并发布到 release
-5. 预先包装好了 siyuan.d.ts 模块，不需要手动替换 node_module 下的 siyuan 模块，开箱即用
+5. 预先包装好了 siyuan.d.ts 模块，不需要手动替换 node_module 下的 siyuan 模块
+6. 提供了 sy-dtype.d.ts 和 api.ts 文件，预先帮你封装好了 API 调用和常用数据类型
 
 ## 模板用法
 

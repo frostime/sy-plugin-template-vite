@@ -4,7 +4,8 @@ This plugin is a community third-party plug-in development template, in addition
 2. soft linking instead of putting the project into the plugins directory program development, you can feel free to develop multiple projects in the same workspace at the same time, and do not worry about accidentally deleting the project code in the source
 3. built-in support for the svelte framework, compared to react, vue and other virtual DOM-based solutions, svelte such compiled framework is more suitable for plug-in development of such lightweight scenarios
 4. provides a github action template to automatically generate package.zip and upload to new release
-5. pre-packaged siyuan.d.ts module, no need to manually replace the siyuan module under the node_module, out-of-the-box use
+5. pre-packaged siyuan.d.ts module, no need to manually replace the siyuan module under the node_module
+6. Provide with api.ts and sy-dtype.d.ts
 
 
 ## Template usage

@@ -2,7 +2,7 @@
   "name": "sy-plugin-template-vite",
   "author": "frostime",
   "url": "https://github.com/frostime/sy-plugin-template-vite",
-  "version": "1.2.0",
+  "version": "1.0.0",
   "displayName": {
     "en_US": "Plugin Template Vite Ver",
     "zh_CN": "插件开发模板-Vite版"

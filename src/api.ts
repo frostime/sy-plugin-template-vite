@@ -1,4 +1,9 @@
-import { 
+/**
+ * Copyright (c) 2023 frostime. All rights reserved.
+ * https://github.com/frostime/sy-plugin-template-vite
+ */
+
+import {
     Block, Notebook, NotebookConf, NotebookId, DocumentId, BlockId,
     doOperation, PreviousID, ParentID, BlockType, BlockSubType 
 } from "sy-dtype";

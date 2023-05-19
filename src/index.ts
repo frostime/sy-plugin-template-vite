@@ -1,3 +1,7 @@
+/**
+ * Copyright (c) 2023 frostime. All rights reserved.
+ * https://github.com/frostime/sy-plugin-template-vite
+ */
 import { Plugin, showMessage, Dialog } from "siyuan"
 import Hello from "./hello.svelte"
 import "./index.scss"
