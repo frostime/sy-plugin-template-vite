@@ -45,7 +45,7 @@ The github action is included and can be automatically packaged and published:
 
 1. set the project `https://github.com/OWNER/REPO/settings/actions` page down to **Workflow Permissions** and open the configuration
 
-    ! [](asset/action.png)
+    ![](asset/action.png)
 
 2. when you need to release a version, push a tag in the format `v*` and github will automatically release (including package.zip)
 
